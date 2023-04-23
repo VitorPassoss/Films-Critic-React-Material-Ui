@@ -55,7 +55,7 @@ const Login = () => {
         console.log(response)
         console.log(response.status)
         if(response.status == 200){
-            const token = response.data.access
+            const token = response.data.access_token
             console.log(token)
             Cookies.set('auth_cookie', token);
             navigate('/'); 

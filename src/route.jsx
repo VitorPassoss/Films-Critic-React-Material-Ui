@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import { ThemeProvider, Global } from "@emotion/react";
 import { createTheme } from "@mui/material/styles";
 import ProtectedRoutes from "./components/PrivateRoute";
+import { UserProvider } from "./UserContext";
+
 
 const theme = createTheme({
   palette: {
@@ -33,7 +35,7 @@ const PathRouter = () => {
         />
         <Routes>
         <Route exact path='/' element={<ProtectedRoutes/>}>
-              <Route path="/" element={<Home/>}/>
+                  <Route path="/" element={<Home/>}/>
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

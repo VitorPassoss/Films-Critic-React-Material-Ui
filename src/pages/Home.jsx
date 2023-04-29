@@ -9,12 +9,15 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import StarIcon from '@mui/icons-material/Star';
 
 const Home = () => {
 
   const [films, setFilms] = React.useState(null);
-
+  let review = 5
+  
+  
   useEffect(()=>{
     const baseURL = "http://localhost:8000/films/"
     axios.get(baseURL).then(response=>{
@@ -32,31 +35,37 @@ const Home = () => {
             <Grid container spacing={2}  sx={{mt:20}}>
               {films.map(film => (
                     <Grid item xs={3}>
-                        <Card sx={{ maxWidth: 345 }}>
-                        <CardMedia
-                          sx={{ height: 210 }}
-                          image={film.image_url}
-                          title="green iguana"
-                        />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="div">
-                            { film.name }
-                          </Typography>
-                          <Typography variant="body2" color="text.secondary">
-                            { film.author }
-                          </Typography>
-                          <Typography variant="body2" color="text.secondary">
-                            { film.description }
-                          </Typography>
-                          <Typography variant="body2" color="text.secondary">
-                            { film.type }
-                          </Typography>
-                          <Typography variant="body2" color="text.secondary">
-                            Media geral : 3
-                          </Typography>
+                        <Card sx={{ maxWidth: 345, backgroundColor: "#1A1E24" }}>
+                          <Box>
+                               <CardMedia
+                            sx={{
+                              height: 300,
+                              objectFit: "contain",
+                              objectPosition: "center",
+                            }}
+                            image={film.image_url}
+                            
+                          />
+                          </Box>
+
+                          
+                        <CardContent sx={{margin:0, paddingBottom:0}}>
+                          <Box component="div" sx={{ display:"flex", justifyContent:"space-between"}}>
+                            <Typography  sx={{ color:"white",margin:0 }}  gutterBottom variant="h6" component="div">
+                              { film.name }
+                            </Typography>
+                            
+                            <Box sx={{ display: "flex" }}>
+                              {[...Array(review)].map((_, i) => (
+                                <StarIcon sx={{ color:"#1de9b6"}} key={i}></StarIcon>
+                              ))}
+                            </Box>
+                          </Box>
+                    
                         </CardContent>
+                       
                         <CardActions>
-                          <Button size="small">Ver Criticas</Button>
+                          <Button  sx={{ backgroundColor:"#1A1E24", margin:0,color:"#1de9b6",fontSize:"10px"}} >Ver Criticas</Button>
                         </CardActions>
                       </Card>
                     </Grid>

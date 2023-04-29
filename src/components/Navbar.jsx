@@ -13,12 +13,11 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { UserContext } from "../UserContext";
-
-
-const pages = ['Filmes', 'Avaliacoes'];
+import { Link } from 'react-router-dom';
+import StarIcon from '@mui/icons-material/Star';
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
-
+import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
 function Navbar(name) {
   const { user, updateUser } = useContext(UserContext);
 
@@ -32,7 +31,7 @@ function Navbar(name) {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (page) => {
     setAnchorElNav(null);
   };
 
@@ -74,11 +73,17 @@ function Navbar(name) {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+               <Link to="" onClick={handleCloseNavMenu} style={{ textDecoration: 'none' }}>
+                <Button sx={{ my: 2, color: 'white', display: 'block' }}>
+                  Filmes
+                </Button>
+              </Link>
+
+              <Link to="/reviews" onClick={handleCloseNavMenu} style={{ textDecoration: 'none' }}>
+                <Button sx={{ my: 2, color: 'white', display: 'block' }}>
+                  Avaliacoes
+                </Button>
+              </Link>
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -100,16 +105,38 @@ function Navbar(name) {
           >
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+           
+              
+              <Link to="/" onClick={handleCloseNavMenu} style={{ textDecoration: 'none' }}>
+                <Button sx={{ my: 2, color: 'white', display: 'block' }}>
+                  Filmes
+                </Button>
+              </Link>
+
+              <Link to="/reviews" onClick={handleCloseNavMenu} style={{ textDecoration: 'none' }}>
+                <Button sx={{ my: 2, color: 'white', display: 'block' }}>
+                  Avaliacoes
+                </Button>
+              </Link>
+           
           </Box>
+
+          <TextField
+            id="search-bar"
+            className="text"
+            onInput={(e) => {
+              setSearchQuery(e.target.value);
+            }}
+            label="Enter a city name"
+            variant="outlined"
+            placeholder="Search..."
+            size="small"
+            sx={{ placeholder:"white"}}
+            
+          />
+          <IconButton type="submit" aria-label="search">
+            <SearchIcon style={{ fill: "white" }} />
+          </IconButton>
 
           <Typography sx={{mr:2,color: 'white'}}>
               {user}

@@ -49,7 +49,7 @@ const Register = () => {
         axios.post(baseURL, body).then((response) => {
           NotificationUser(response)
         }).catch(error=>{
-            alert("erro na criacao ")
+            alert("erro na criacao")
         });
       }
 

@@ -13,6 +13,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.16",
+    "@mui/joy": "^5.0.0-alpha.77",
     "@mui/material": "^5.12.1",
     "@mui/styled-engine-sc": "^5.12.0",
     "@mui/system": "^5.12.1",
@@ -20,7 +21,8 @@
     "js-cookie": "^3.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.10.0",
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

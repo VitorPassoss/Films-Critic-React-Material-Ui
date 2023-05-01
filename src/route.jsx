@@ -9,15 +9,23 @@ import ProtectedRoutes from "./components/PrivateRoute";
 import { Reviews } from "@mui/icons-material";
 import HomeReviews from "./pages/HomeReviews";
 import NotFound from "./pages/NotFound";
+import DetailsFilms from "./pages/DetailsFilms";
+
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#1E252C",
+      main: "#14181C",
     },
     secondary: {
       main: "#1de9b6",
-    },
+    }
+  },
+  typography: {
+    fontFamily: [
+      'Poppins',
+      'sans-serif',
+    ].join(','),
   },
 });
 
@@ -28,9 +36,9 @@ const PathRouter = () => {
         <Global
           styles={{
             body: {
-              backgroundColor: "#1A1E24",
               margin: 0,
-              padding: 0
+              padding: 0,
+              backgroundColor:"#1E252C",
             },
           }}
         />
@@ -44,6 +52,12 @@ const PathRouter = () => {
               <ProtectedRoutes>
                 <HomeReviews/>
               </ProtectedRoutes>
+              } />
+
+              <Route path="/filme/:id" element={
+                  <ProtectedRoutes>
+                    <DetailsFilms></DetailsFilms>
+                  </ProtectedRoutes>
               } />
              
           <Route exact path="/login" element={<Login />} />

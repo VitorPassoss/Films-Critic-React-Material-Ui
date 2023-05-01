@@ -70,31 +70,78 @@ const Register = () => {
             <form autoComplete="off" onSubmit={handleSubmit}>
             <Typography sx={{ fontWeight: 'medium',fontSize: 25, mb:2}} color="secondary">Register</Typography>
               <TextField 
-                      label="Email"
                       onChange={e => setEmail(e.target.value)}
                       required
                       variant="outlined"
                       color="secondary"
                       type="text"
-                      sx={{mb: 3}}
                       fullWidth
                       value={email}
                       error={emailError}
+                      sx={{
+                        mb: 3,
+                        "& label.Mui-focused": {
+                            color: "secondary"
+                        },
+                        "& .MuiOutlinedInput-root": {
+                            "& fieldset": {
+                                borderColor: "#1de9b6"
+                            },
+                            "&:hover fieldset": {
+                                borderColor: "#1de9b6"
+                            },
+                            "&.Mui-focused fieldset": {
+                                borderColor: "secondary"
+                            },
+                            "& input::placeholder": {
+                                color: "white"
+                            }
+                        }
+                    }}
+                    InputProps={{
+                        inputProps: {
+                          placeholder: 'Insira um username',
+                          style: { color: 'white'} // Defina a cor do placeholder aqui
+                        }
+                      }}
                   />
                 <TextField 
-                    label="Username"
                     onChange={e => setUsername(e.target.value)}
                     required
                     variant="outlined"
                     color="secondary"
                     type="text"
-                    sx={{mb: 3}}
                     fullWidth
                     value={Username}
                     error={emailError}
+                    sx={{
+                        mb: 3,
+                        "& label.Mui-focused": {
+                            color: "secondary"
+                        },
+                        "& .MuiOutlinedInput-root": {
+                            "& fieldset": {
+                                borderColor: "#1de9b6"
+                            },
+                            "&:hover fieldset": {
+                                borderColor: "#1de9b6"
+                            },
+                            "&.Mui-focused fieldset": {
+                                borderColor: "secondary"
+                            },
+                            "& input::placeholder": {
+                                color: "white"
+                            }
+                        }
+                    }}
+                    InputProps={{
+                        inputProps: {
+                          placeholder: 'Insira seu email',
+                          style: { color: 'white'} // Defina a cor do placeholder aqui
+                        }
+                      }}
                  />
                  <TextField 
-                    label="Password"
                     onChange={e => setPassword(e.target.value)}
                     required
                     variant="outlined"
@@ -103,12 +150,37 @@ const Register = () => {
                     value={password}
                     error={passwordError}
                     fullWidth
-                    sx={{mb: 3}}
+                    sx={{
+                        mb: 3,
+                        "& label.Mui-focused": {
+                            color: "secondary"
+                        },
+                        "& .MuiOutlinedInput-root": {
+                            "& fieldset": {
+                                borderColor: "#1de9b6"
+                            },
+                            "&:hover fieldset": {
+                                borderColor: "#1de9b6"
+                            },
+                            "&.Mui-focused fieldset": {
+                                borderColor: "secondary"
+                            },
+                            "& input::placeholder": {
+                                color: "white"
+                            }
+                        }
+                    }}
+                    InputProps={{
+                        inputProps: {
+                          placeholder: 'Insira sua senha',
+                          style: { color: 'white'} // Defina a cor do placeholder aqui
+                        }
+                      }}
                  />
                  <Button variant="outlined" color="secondary" type="submit">Register</Button>
              
         </form>
-        <small>Need an account? <Link to="/">Register here</Link></small>
+        <Link  to="/login"><Typography sx={{ color:"#1de9b6", fontSize:"12px", marginTop:"14px"}}>Login here</Typography></Link>
             </Container>
         </React.Fragment>
      );

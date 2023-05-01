@@ -18,8 +18,6 @@ const Login = () => {
     const baseURL = "http://localhost:8000/api/token/";
     const navigate = useNavigate();
 
-
-
     const handleSubmit = (event) => {
         event.preventDefault()
  
@@ -47,7 +45,9 @@ const Login = () => {
         axios.post(baseURL, body).then((response) => {
           NotificationUser(response)
         }).catch(error=>{
-            alert("usuario invalido")
+            setEmailError(true)
+            setPasswordError(true)
+            NotificationUser(error.response)
         });
       }
 
@@ -60,7 +60,7 @@ const Login = () => {
             Cookies.set('auth_cookie', token);
             navigate('/'); 
         }else{
-            alert("Usuario invalido")
+            console.log("erro na requisicao")
         }
 
     }
@@ -70,34 +70,85 @@ const Login = () => {
             <Container sx={{ width: 1/4 ,mt:25}} >
             <form autoComplete="off" onSubmit={handleSubmit}>
             <Typography sx={{ fontWeight: 'medium',fontSize: 25, mb:2}} color="secondary">Login</Typography>
-                <TextField 
-                    label="Username"
-                    onChange={e => setUsername(e.target.value)}
-                    required
-                    variant="outlined"
-                    color="secondary"
-                    type="text"
-                    sx={{mb: 3}}
-                    fullWidth
-                    value={Username}
-                    error={emailError}
-                 />
-                 <TextField 
-                    label="Password"
-                    onChange={e => setPassword(e.target.value)}
-                    required
-                    variant="outlined"
-                    color="secondary"
-                    type="password"
-                    value={password}
-                    error={passwordError}
-                    fullWidth
-                    sx={{mb: 3}}
-                 />
+            <TextField 
+                onChange={e => setUsername(e.target.value)}
+                required
+                variant="outlined"
+                color="secondary"
+                type="text"
+                sx={{
+                    mb: 3,
+                    "& label.Mui-focused": {
+                        color: "secondary"
+                    },
+                    "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                            borderColor: "#1de9b6"
+                        },
+                        "&:hover fieldset": {
+                            borderColor: "#1de9b6"
+                        },
+                        "&.Mui-focused fieldset": {
+                            borderColor: "secondary"
+                        },
+                        "& input::placeholder": {
+                            color: "white"
+                        }
+                    }
+                }}
+                InputProps={{
+                    inputProps: {
+                      placeholder: 'Insira seu username',
+                      style: { color: 'white'} // Defina a cor do placeholder aqui
+                    }
+                  }}
+                fullWidth
+                value={Username}
+                error={emailError}
+                
+            />
+
+            <TextField 
+                onChange={e => setPassword(e.target.value)}
+                required
+                variant="outlined"
+                color="secondary"
+                type="password"
+                value={password}
+                error={passwordError}
+                fullWidth
+                sx={{
+                    mb: 3,
+                    "& label.Mui-focused": {
+                        color: "secondary"
+                    },
+                    "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                            borderColor: "#1de9b6"
+                        },
+                        "&:hover fieldset": {
+                            borderColor: "#1de9b6"
+                        },
+                        "&.Mui-focused fieldset": {
+                            borderColor: "secondary"
+                        },
+                        "& input::placeholder": {
+                            color: "white"
+                        }
+                    }
+                }}
+                InputProps={{
+                    inputProps: {
+                      placeholder: 'Insira sua senha',
+                      style: { color: 'white'} // Defina a cor do placeholder aqui
+                    }
+                  }}
+            />
+
                  <Button variant="outlined" color="secondary" type="submit">Login</Button>
              
         </form>
-        <small>Need an account? <Link to="/">Register here</Link></small>
+        <Link  to="/register"><Typography sx={{ color:"#1de9b6", fontSize:"12px", marginTop:"14px"}}>Register here</Typography></Link>
             </Container>
         </React.Fragment>
      );

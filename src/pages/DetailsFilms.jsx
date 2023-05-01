@@ -1,7 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef,useEffect, useState} from 'react';
 import Navbar from '../components/Navbar';
 import CardDetails from '../components/CardDetails';
 import { styled } from '@mui/material/styles';
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
 
 
 
@@ -47,21 +50,50 @@ const ImageBorder = styled('div')({
 });
 
 
-const DetailsFilms = () => {
+function DetailsFilms() {
+  const { id } = useParams();
+  const [film, setFilm] = useState({});
+  const [status, setStatus] = useState("pending");
+
+  useEffect(() => {
+    const baseURL = "http://localhost:8000/films/details/" + id;
+    axios
+      .get(baseURL)
+      .then((response) => {
+        setFilm(response.data.films);
+        setStatus("success");
+      })
+      .catch((error) => {
+        setStatus("error");
+      });
+  }, []);
+
+  if (status === "pending") {
+    return <div>Loading...</div>;
+  }
+
+  if (status === "error") {
+    return <div>404 - Film not found</div>;
+  }
+
   return (
     <div>
-        <Navbar></Navbar>
-        <PositionImage>
-            <ImageContainer>
-                <Image src="https://a.ltrbxd.com/resized/sm/upload/a6/th/cz/kf/la-la-land-1200-1200-675-675-crop-000000.jpg?v=874a46b231" />
-                <ImageOverlay />
-                <ImageBorder />
-            </ImageContainer>
-        </PositionImage>
-        <CardDetails></CardDetails>
-
+      <Navbar />
+      <PositionImage>
+        <ImageContainer>
+          <Image src={film.banner_url} />
+          <ImageOverlay />
+          <ImageBorder />
+        </ImageContainer>
+      </PositionImage>
+      <CardDetails
+        title={film.name}
+        description={film.description}
+        author={film.author}
+        image_url={film.image_url}
+      ></CardDetails>
     </div>
-  )
-};
+  );
+}
 
 export default DetailsFilms;

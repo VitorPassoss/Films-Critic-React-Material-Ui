@@ -127,22 +127,35 @@ function Navbar(name) {
             onInput={(e) => {
               setSearchQuery(e.target.value);
             }}
-            label="Enter a city name"
             variant="outlined"
-            placeholder="Search..."
-            size="small"
-            sx={{ placeholder:"white"}}
             
+            size="small"
+            sx={{
+              border: "1px solid white",
+              placeholder: "white",
+              marginTop:1
+            }}
+            InputProps={{
+              inputProps: {
+                placeholder: 'Pesquise um filme',
+                style: { color: 'white'} // Defina a cor do placeholder aqui
+              }
+            }}
           />
-          <IconButton type="submit" aria-label="search">
-            <SearchIcon style={{ fill: "white" }} />
+
+          <IconButton  type="submit" aria-label="search" >
+            <SearchIcon    style={{ fill: "white" }} />
           </IconButton>
 
           <Typography sx={{mr:2,color: 'white'}}>
               {user}
           </Typography>
           <Box sx={{ flexGrow: 0 }}>
-            
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt={user} src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

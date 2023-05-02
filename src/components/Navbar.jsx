@@ -113,11 +113,7 @@ function Navbar(name) {
                 </Button>
               </Link>
 
-              <Link to="/reviews" onClick={handleCloseNavMenu} style={{ textDecoration: 'none' }}>
-                <Button sx={{ my: 2, color: 'white', display: 'block' }}>
-                  Avaliacoes
-                </Button>
-              </Link>
+             
            
           </Box>
 

@@ -6,8 +6,6 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 
-
-
 const PositionImage = styled('div')({
   display:"flex",
   flexDirection:"flex",
@@ -51,8 +49,10 @@ const ImageBorder = styled('div')({
 
 
 function DetailsFilms() {
+  
   const { id } = useParams();
   const [film, setFilm] = useState({});
+  const [useReviews, setReviews] = useState({});
   const [status, setStatus] = useState("pending");
 
   useEffect(() => {
@@ -61,6 +61,7 @@ function DetailsFilms() {
       .get(baseURL)
       .then((response) => {
         setFilm(response.data.films);
+        setReviews(response.data.reviews)
         setStatus("success");
       })
       .catch((error) => {
@@ -91,6 +92,7 @@ function DetailsFilms() {
         description={film.description}
         author={film.author}
         image_url={film.image_url}
+        useReviews={useReviews}
       ></CardDetails>
     </div>
   );

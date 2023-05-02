@@ -7,7 +7,6 @@ import { ThemeProvider, Global } from "@emotion/react";
 import { createTheme } from "@mui/material/styles";
 import ProtectedRoutes from "./components/PrivateRoute";
 import { Reviews } from "@mui/icons-material";
-import HomeReviews from "./pages/HomeReviews";
 import NotFound from "./pages/NotFound";
 import DetailsFilms from "./pages/DetailsFilms";
 
@@ -48,11 +47,7 @@ const PathRouter = () => {
                     <Home />
                   </ProtectedRoutes>
                 } />
-              <Route exact path="/reviews" element={
-              <ProtectedRoutes>
-                <HomeReviews/>
-              </ProtectedRoutes>
-              } />
+              
 
               <Route path="/filme/:id" element={
                   <ProtectedRoutes>

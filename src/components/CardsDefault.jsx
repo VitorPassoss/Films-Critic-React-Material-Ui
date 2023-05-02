@@ -9,6 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import StarIcon from '@mui/icons-material/Star';
+
 const CardsDefault = () => {
   const [reviews, setReviews] = React.useState(null);
 
@@ -22,18 +23,18 @@ const CardsDefault = () => {
   return (
     <Container >
             {reviews && (
-            <Grid container spacing={2}  sx={{mt:20}}>
+            <Grid container spacing={2}  sx={{mt:4, mb:9}}>
               {reviews.map(review => (
                 <Grid item xs={6}>
-                  <Paper  sx={{ maxWidth: 600, backgroundColor: "#1E252C", height:140 }} >
+                  <Paper  sx={{ maxWidth: 600, backgroundColor: "#1E252C", height:130 }} >
                     <Grid sx={{display:"flex", justifyContent:"start"}}>
                       <CardMedia sx={{
                                     width:"16%",
-                                    height: 140,
+                                    height: 130,
                                     objectFit: "cover",
                                     objectPosition: "center",
                                   }}
-                                  image={"https://upload.wikimedia.org/wikipedia/pt/c/c0/La_La_Land_%28filme%29.png"}
+                                  image={review.film.image_url}
                                   
                                 />
                       <CardContent sx={{margin:0, paddingBottom:0, display:"flex",flexDirection:"column"}}>

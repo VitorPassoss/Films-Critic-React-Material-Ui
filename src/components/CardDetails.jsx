@@ -26,8 +26,8 @@ const RatingLayout = styled("div")({
     justifyContent: 'space-between',
     padding:"20px"
 })
-const CardDetails = ({title,description,author,image_url}) => {
-
+const CardDetails = ({title,description,author,image_url, useReviews}) => {
+    console.log(useReviews)
     const [isTextFieldVisible, setIsTextFieldVisible] = useState(false);
 
   const handleButtonClick = () => {
@@ -165,58 +165,43 @@ const CardDetails = ({title,description,author,image_url}) => {
                     <Grid item xs={12}>
                         <Divider sx={{ backgroundColor: '#ccc' }} />
                         <Typography sx={{color:"white" , paddingTop:"10px"}}>RECENT REVIEWS</Typography>
+                        {useReviews.map(review=>{
+                            return (
+                                <Card sx={{ width: 'auto' ,boxShadow: 1, backgroundColor:"#1E252C", padding:4, marginTop:4}}>
+                                    <Box sx={{display:"flex", flexDirection:"row",color:"white"}}>
+                                        <Box>
+                                        
+                                        <Tooltip title="user">
+                                        <IconButton  sx={{ p: 0 }}>
+                                            <Avatar alt="test"  />
+                                        </IconButton>
+                                        </Tooltip>
+                                        </Box>
 
-                        <Card sx={{ width: 'auto' ,boxShadow: 1, backgroundColor:"#1E252C", padding:4, marginTop:4}}>
-                            <Box sx={{display:"flex", flexDirection:"row",color:"white"}}>
-                                <Box>
-                                
-                                <Tooltip title="user">
-                                <IconButton  sx={{ p: 0 }}>
-                                    <Avatar alt="test"  />
-                                </IconButton>
-                                </Tooltip>
-                                </Box>
+                                        <Box>
+                                            <Typography sx={{fontSize:"15px", marginLeft:2}}>Review by {review.user.username}</Typography>
+                                            <Grid>
+                                                <Grid item xs={12}>
+                                                    <Typography sx={{marginLeft:2,fontSize:"13px",marginTop:0}}>
+                                                    
+                                                    <Box sx={{ display: "flex" }}>
+                                                            {[...Array(Number(review.ranged))].map((_, i) => (
+                                                            <StarIcon fontSize="small" sx={{ color:"#1de9b6"}} key={i}></StarIcon>
+                                                            ))}
+                                                    </Box>
+                                                    {review.critic}
 
-                                <Box>
-                                    <Typography sx={{fontSize:"15px", marginLeft:2}}>Review by (nome do usuario)</Typography>
-                                    <Grid>
-                                        <Grid item xs={12}>
-                                            <Typography sx={{marginLeft:2,fontSize:"13px",marginTop:0}}>
-                                            "Comentario do usuario"
-
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                                
-                            </Box>
-                        </Card>
+                                                    </Typography>
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                        
+                                    </Box>
+                                </Card>
+                            )
+                        })}
                         
-                        <Card sx={{ width: 'auto' ,boxShadow: 1, backgroundColor:"#1E252C", padding:4, marginTop:4}}>
-                            <Box sx={{display:"flex", flexDirection:"row",color:"white"}}>
-                                <Box>
-                                
-                                <Tooltip title="user">
-                                <IconButton  sx={{ p: 0 }}>
-                                    <Avatar alt="test"  />
-                                </IconButton>
-                                </Tooltip>
-                                </Box>
-
-                                <Box>
-                                    <Typography sx={{fontSize:"15px", marginLeft:2}}>Review by (nome do usuario)</Typography>
-                                    <Grid>
-                                        <Grid item xs={12}>
-                                            <Typography sx={{marginLeft:2,fontSize:"13px",marginTop:0}}>
-                                            "Comentario do usuario"
-
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                                
-                            </Box>
-                        </Card>
+                      
                         
                     </Grid> 
                     

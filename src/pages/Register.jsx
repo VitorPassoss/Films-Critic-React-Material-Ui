@@ -100,7 +100,7 @@ const Register = () => {
                     }}
                     InputProps={{
                         inputProps: {
-                          placeholder: 'Insira um username',
+                          placeholder: 'Insira seu email',
                           style: { color: 'white'} // Defina a cor do placeholder aqui
                         }
                       }}
@@ -136,7 +136,7 @@ const Register = () => {
                     }}
                     InputProps={{
                         inputProps: {
-                          placeholder: 'Insira seu email',
+                          placeholder: 'Insira seu username',
                           style: { color: 'white'} // Defina a cor do placeholder aqui
                         }
                       }}
